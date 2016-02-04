@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 Route::get('member', 'MembersController@index');
 Route::any('createmember', 'MembersController@create');
 Route::get('deletemember', 'MembersController@delete');
+Route::get('updatemember', 'MembersController@update');
 
 
 

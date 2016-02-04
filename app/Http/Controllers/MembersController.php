@@ -46,4 +46,10 @@ class MembersController extends Controller
         return Redirect::to('/');
     }
 
+    public function update()
+    {
+        $id = Input::all();
+        dd($id);
+    }
+
 }

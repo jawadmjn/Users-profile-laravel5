@@ -29,12 +29,12 @@
                           <td>
                             <input type="radio" name="optradio" value="{{ $value->id }}">
                           </td>
-                          <td><a href="deletemember?id={{ $value->id }}" class="delete btn btn-link" value="{{ $value->id }}">Delete</a></td>
+                          <td><a href="deletemember?id={{ $value->id }}" class="delete btn btn-link">Delete</a></td>
                         </tr>
                        </tbody>
                       @endforeach
                     </table>
-                    <p>Select a User From List and Click to Update</p>
+                    <p>Select a User From List and <a href="" id="update" class="btn btn-link">Click Here to Update</a></p>
                     @else
                         <p>No Members Data You can <br/><a href="{{ url('member') }}" class="btn btn-link" onclick="unbindExit();">Create Now</a></p>
                     @endif
@@ -59,11 +59,29 @@ var confirmOnPageExit = function (e)
 window.onbeforeunload = confirmOnPageExit;
 
 });
-
 function unbindExit() {
     window.onbeforeunload = null;
 }
 
+$('#update').click(function () {
+  if ( $("input[name='optradio']:checked").val() != undefined )
+  {
+    var link = document.getElementById("update");
+    // var url = window.location.hostname + '/updatemember?id=' + $("input[name='optradio']:checked").val();
+    var url = 'updatemember?id=' + $("input[name='optradio']:checked").val();
+    link.setAttribute('href', url);
+    return true;
+  }
+  else
+  {
+    console.log("Please Select Any User to proceed...");
+    alert("Please Select Any User to proceed...");
+    return false;
+  }
+});
+
+
+// var memberId = $(this).attr("value");
 </script>
 
 @stop
