@@ -74,8 +74,8 @@
                                 name="dob"
                                 value="{{ old('phone') }}"
                                 data-validation="required date"
-                                data-validation-format="dd.mm.yyyy"
-                                data-validation-help="dd.mm.yyyy"
+                                data-validation-format="yyyy.mm.dd"
+                                data-validation-help="yyyy.mm.dd"
                                 data-validation-error-msg="Enter Your DOB"
                                 >
                             </div>
