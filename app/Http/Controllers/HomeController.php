@@ -32,9 +32,11 @@ class HomeController extends Controller {
      */
     public function index()
     {
+        $totalRecords = DB::table('members')->count();
         $members = DB::table('members')->select('id', 'name', 'email', 'phone', 'dob')->get();
         return view('home')
-            ->with('members', $members);
+            ->with('members', $members)
+            ->with('totalRecords', $totalRecords);
     }
 
 }
