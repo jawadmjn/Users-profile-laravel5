@@ -61,6 +61,7 @@
             type="text"
             class="form-control"
             name="dob"
+            id="datepicker"
             value="{{ isset($member->dob) ? $member->dob : old('dob') }}"
             data-validation="required date"
             data-validation-format="yyyy-mm-dd"

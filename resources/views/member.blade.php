@@ -17,11 +17,25 @@
 
 @section('javascript')
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+
+<!-- Jquery datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <script type="text/javascript">
 $.validate({
     form : '#createForm',
     borderColorOnError : '#d3d3d3'
 });
+
+$(function() {
+    $( "#datepicker" ).datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+});
+
+
+
 </script>
 @stop
 
