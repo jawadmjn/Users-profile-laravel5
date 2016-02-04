@@ -74,7 +74,6 @@ $('#update').click(function () {
   }
   else
   {
-    console.log("Please Select Any User to proceed...");
     alert("Please Select Any User to proceed...");
     return false;
   }

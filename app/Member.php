@@ -23,6 +23,6 @@ class Member extends Model {
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['remember_token'];
+	protected $hidden = ['id', 'remember_token'];
 
 }

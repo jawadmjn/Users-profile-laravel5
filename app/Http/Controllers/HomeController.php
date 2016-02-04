@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use DB;
+use Session;
 
 class HomeController extends Controller {
 
@@ -32,6 +33,7 @@ class HomeController extends Controller {
      */
     public function index()
     {
+        Session::forget('update');
         $totalRecords = DB::table('members')->count();
         $members = DB::table('members')->select('id', 'name', 'email', 'phone', 'dob')->get();
         return view('home')
