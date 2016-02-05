@@ -78,7 +78,7 @@
             <button type="submit" class="btn btn-primary">
                 Submit
             </button>
-            <a href="/" class="btn btn-default" role="button">Cancel</a>
+            <a href="{{ url('/') }}" class="btn btn-default" role="button">Cancel</a>
         </div>
     </div>
 </form>
