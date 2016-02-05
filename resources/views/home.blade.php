@@ -70,6 +70,7 @@ $('#update').click(function () {
     var link = document.getElementById("update");
     // var url = window.location.hostname + '/updatemember?id=' + $("input[name='optradio']:checked").val();
     var url = 'updatemember?id=' + $("input[name='optradio']:checked").val();
+    unbindExit();
     link.setAttribute('href', url);
     return true;
   }
