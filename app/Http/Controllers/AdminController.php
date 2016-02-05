@@ -2,7 +2,7 @@
 use DB;
 use Session;
 
-class HomeController extends Controller {
+class AdminController extends Controller {
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ class HomeController extends Controller {
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -50,7 +50,6 @@ class HomeController extends Controller {
         $currentPageurl = $members->url($members->currentPage()); // get current page url
         // get the numeric value from url for comparing it with for-loop $i
         $active = filter_var($currentPageurl, FILTER_SANITIZE_NUMBER_INT);
-
 
         return view('home')
             ->with('members', $members)

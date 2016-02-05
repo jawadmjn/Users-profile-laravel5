@@ -18,8 +18,11 @@
                           <th>User Email</th>
                           <th>Phone</th>
                           <th>Date of Birth</th>
+                          <!-- if you do not want to show these rows to guest users than just en-able this @ if auth checker and down @ endif also -->
+                          <!-- @ if (! Auth::guest()) -->
                           <th>Select to Update</th>
                           <th>Delete User</th>
+                          <!-- @ endif -->
                         </tr>
                       </thead>
                       <?php $i = 1; ?>
@@ -31,11 +34,15 @@
                           <td>{{ $value->email }}</td>
                           <td>{{ $value->phone }}</td>
                           <td>{{ $value->dob }}</td>
+                          <!-- if you do not want to show these rows to guest users than just en-able this @ if auth checker and down @ endif also -->
+                          <!-- @ if (! Auth::guest()) -->
                           <td>
                             <input type="radio" name="optradio" value="{{ $value->id }}">
                           </td>
-                          <!-- <td><a href="deletemember?id={{ $value->id }}" class="delete btn btn-link">Delete</a></td> -->
-                          <td><button type="button" value="{{ $value->id }}" class="delete btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button></td>
+                          <td>
+                            <button type="button" value="{{ $value->id }}" class="delete btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+                          </td>
+                          <!-- @ endif -->
                         </tr>
                        </tbody>
                        <?php $i++; ?>

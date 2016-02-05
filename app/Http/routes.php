@@ -20,9 +20,9 @@ Route::post('updatemember', 'MembersController@updatemember');
 
 
 
-Route::get('home', 'HomeController@index');
-
-// Route::controllers([
-//  'auth' => 'Auth\AuthController',
-//  'password' => 'Auth\PasswordController',
-// ]);
+Route::get('home', 'AdminController@index');
+// This will authenticate Admin user and on success it will return route to Home, so we have a home route above
+Route::controllers([
+ 'auth' => 'Auth\AuthController',
+ 'password' => 'Auth\PasswordController',
+]);

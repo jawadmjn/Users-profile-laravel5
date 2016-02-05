@@ -8,6 +8,12 @@ use Session;
 
 class MembersController extends Controller
 {
+    // this constructor take user to CRUD on members if Authentication is successful
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('member');
