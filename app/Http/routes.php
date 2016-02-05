@@ -11,11 +11,18 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'HomeController@index');
+Route::get('member', 'MembersController@index');
+Route::any('createmember', 'MembersController@create');
+Route::get('deletemember', 'MembersController@delete');
+Route::get('updatemember', 'MembersController@update');
+Route::post('updatemember', 'MembersController@updatemember');
+
+
 
 Route::get('home', 'HomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+// Route::controllers([
+//  'auth' => 'Auth\AuthController',
+//  'password' => 'Auth\PasswordController',
+// ]);
