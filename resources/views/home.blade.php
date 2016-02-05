@@ -8,6 +8,7 @@
                 <div class="panel-heading">Create New User by <a href="{{ url('member') }}" class="btn btn-link" onclick="unbindExit();">Create Now</a></div>
                 <div class="panel-body">
                     @if (! $totalRecords == 0)
+                    @include('forms.pagination')
                     <table class="table table-hover">
                       <thead>
                         <tr>
