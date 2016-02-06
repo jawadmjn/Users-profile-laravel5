@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 use Input;
-use DB;
 use Redirect;
 use App\Membersvalidator;
 use App\Member;
@@ -49,19 +48,28 @@ class MembersController extends Controller
 
     public function delete()
     {
-        $id = Input::all();
-        DB::table('members')->where('id', '=', $id)->delete();
+        // get the id of the member
+        $id = Input::get('id');
+
+        //find if id exist
+        $member = Member::find($id);
+
+        // Delete the member
+        $member->delete();
         return Redirect::to('/');
     }
 
     public function update()
     {
         $id = Input::all();
-        $update = true;
-        // Retrive selected Member info and send to the Form
-        $member = DB::table('members')->where('id', $id)->get();
 
-        // For mprocessing update form, Putting $update is sessions and will be removed after final without errors update
+        // this variable will be use as check for putting update or create link on same user creation form ( one form with multiple operations)
+        $update = true;
+
+        // Retrive selected Member info and send to the Form
+        $member = Member::find($id);
+
+        // For processing update form, Putting $update is sessions and will be removed after final without errors update
         Session::put('update', $update);
         return view('member')
             ->with('member', $member[0])
@@ -86,11 +94,15 @@ class MembersController extends Controller
         else
         {
             // update our member data
-            DB::table('members')
-                ->where('id', $inputs['id'])
-                ->update(['name' => $inputs['name'], 'email' => $inputs['email'], 'phone' => $inputs['phone'], 'dob' => $inputs['dob']]);
+            $member = Member::find($inputs['id']);
 
-            // Update done so just forget update and Redirect to main page
+            $member->name = $inputs['name'];
+            $member->email = $inputs['email'];
+            $member->phone = $inputs['phone'];
+            $member->dob = $inputs['dob'];
+            $member->save();
+
+            // Update done so just forget from sessions update and Redirect to main page
             Session::forget('update');
             return Redirect::to('/');
         }
