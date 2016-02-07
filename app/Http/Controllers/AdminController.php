@@ -34,7 +34,15 @@ class AdminController extends Controller {
     public function index()
     {
         Session::forget('update');
+        $members = Member::all();
 
+        return view('home')
+            ->with('members', $members)
+            ->with('totalRecords', $members->count());
+    }
+
+    public function showPagination()
+    {
         // We can limit it or increase it by changing value 8.
         // If we do not want pagination then replace Member::paginate(8); with Member::all();
         $members = Member::paginate(8);
@@ -48,45 +56,16 @@ class AdminController extends Controller {
 
         // For adding active class in pagination menu (this css class will show user on which page user is)
         $currentPageurl = $members->url($members->currentPage()); // get current page url
+
         // get the numeric value from url for comparing it with for-loop $i
         $active = filter_var($currentPageurl, FILTER_SANITIZE_NUMBER_INT);
 
-
+        // Use this if Pagination is Enable
         return view('home')
             ->with('members', $members)
             ->with('totalRecords', $members->total())
             ->with('reqPagination', $reqPagination)
             ->with('active', $active);
     }
-
-
-    // Old DB technique without Eloquent
-    // public function index()
-    // {
-    //     Session::forget('update');
-    //     $totalRecords = DB::table('members')->count();
-
-    //     // ->simplePaginate(8) allows us to paginate our page ig members are more than 8
-    //     // We can limit it or increase it by changing value 8.
-    //     // If we do not want pagination then replace ->simplePaginate(8) with ->get();
-    //     $members = DB::table('members')->select('id', 'name', 'email', 'phone', 'dob')->simplePaginate(8);
-
-    //     // For finding how many numbers we need for pagination i use this technique
-    //     // $maximum questions / Question to show PerPage
-    //     // In case you do not want pagination in data retriving then we can Remove $reqPagination, $currentPageurl and $active.
-    //     $reqPagination = ceil( $totalRecords / $members->perPage() );
-    //     $reqPagination = number_format($reqPagination, 0);
-
-    //     // For adding active class in pagination menu
-    //     $currentPageurl = $members->url($members->currentPage()); // get current page url
-    //     // get the numeric value from url for comparing it with for-loop $i
-    //     $active = filter_var($currentPageurl, FILTER_SANITIZE_NUMBER_INT);
-
-    //     return view('home')
-    //         ->with('members', $members)
-    //         ->with('totalRecords', $totalRecords)
-    //         ->with('reqPagination', $reqPagination)
-    //         ->with('active', $active);
-    // }
 
 }

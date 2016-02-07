@@ -34,7 +34,15 @@ class HomeController extends Controller {
     public function index()
     {
         Session::forget('update');
+        $members = Member::all();
 
+        return view('home')
+            ->with('members', $members)
+            ->with('totalRecords', $members->count());
+    }
+
+    public function showPagination()
+    {
         // We can limit it or increase it by changing value 8.
         // If we do not want pagination then replace Member::paginate(8); with Member::all();
         $members = Member::paginate(8);
@@ -48,10 +56,11 @@ class HomeController extends Controller {
 
         // For adding active class in pagination menu (this css class will show user on which page user is)
         $currentPageurl = $members->url($members->currentPage()); // get current page url
+
         // get the numeric value from url for comparing it with for-loop $i
         $active = filter_var($currentPageurl, FILTER_SANITIZE_NUMBER_INT);
 
-
+        // Use this if Pagination is Enable
         return view('home')
             ->with('members', $members)
             ->with('totalRecords', $members->total())
