@@ -20,9 +20,10 @@
                 class="form-control"
                 name="name"
                 value="{{ isset($member->name) ? $member->name : old('name') }}"
-                data-validation="required custom"
+                data-validation="required custom length"
                 data-validation-regexp="^([A-z]+)$"
-                data-validation-error-msg="Enter User Name (Contains no numeric)"
+                data-validation-length="max30"
+                data-validation-error-msg="Enter User Name (Only Alphabets(without Spaces) and Not more than 30 characters)"
                 >
         </div>
     </div>
@@ -35,8 +36,9 @@
             class="form-control"
             name="email"
             value="{{ isset($member->email) ? $member->email : old('email') }}"
-            data-validation="required email"
-            data-validation-error-msg="Enter Valid Email"
+            data-validation="required email length"
+            data-validation-length="max50"
+            data-validation-error-msg="Enter Valid Email And Not more than 50 characters"
             >
         </div>
     </div>
@@ -49,8 +51,9 @@
             class="form-control"
             name="phone"
             value="{{ isset($member->phone) ? $member->phone : old('phone') }}"
-            data-validation="required number"
-            data-validation-error-msg="Enter Phone Number"
+            data-validation="required number length"
+            data-validation-length="max20"
+            data-validation-error-msg="Enter Valid Phone Number Not more than 20 characters and Only Numbers"
             >
         </div>
     </div>
@@ -66,7 +69,7 @@
             data-validation="required date"
             data-validation-format="yyyy-mm-dd"
             data-validation-help="yyyy-mm-dd"
-            data-validation-error-msg="Enter Your DOB"
+            data-validation-error-msg="Enter Valid Your DOB (yyyy-mm-dd)"
             >
         </div>
     </div>
@@ -78,7 +81,7 @@
             <button type="submit" class="btn btn-primary">
                 Submit
             </button>
-            <a href="/" class="btn btn-default" role="button">Cancel</a>
+            <a href="{{ url('/') }}" class="btn btn-default" role="button">Cancel</a>
         </div>
     </div>
 </form>

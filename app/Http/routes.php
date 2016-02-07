@@ -12,6 +12,10 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+//Use this route if you want Pagination
+// Route::get('/', 'HomeController@showPagination');
+
 Route::get('member', 'MembersController@index');
 Route::any('createmember', 'MembersController@create');
 Route::get('deletemember', 'MembersController@delete');
@@ -20,9 +24,13 @@ Route::post('updatemember', 'MembersController@updatemember');
 
 
 
-Route::get('home', 'HomeController@index');
+Route::get('home', 'AdminController@index');
 
-// Route::controllers([
-//  'auth' => 'Auth\AuthController',
-//  'password' => 'Auth\PasswordController',
-// ]);
+//Use this route if you want Pagination
+// Route::get('home', 'AdminController@showPagination');
+
+// This will authenticate Admin user and on success it will return route to Home, so we have a home route above
+Route::controllers([
+ 'auth' => 'Auth\AuthController',
+ 'password' => 'Auth\PasswordController',
+]);

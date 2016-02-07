@@ -1,13 +1,18 @@
 <?php namespace App\Http\Controllers;
 use Input;
-use DB;
 use Redirect;
-use App\Membersvalidator;
-use App\Member;
+use App\Models\Membersvalidator;
+use App\Models\Member;
 use Session;
 
 class MembersController extends Controller
 {
+    // this constructor take user to CRUD on members if Authentication is successful
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('member');
@@ -37,29 +42,52 @@ class MembersController extends Controller
                 'phone'     => Input::get('phone'),
                 'dob'       => Input::get('dob'),
             ]);
+
+            // We setup a cookie of recent change to show graphically user to a recent change in any field on home table
+            // And will delete this cookie on home page using javascript
+            setcookie("updatedUser", $inputs['email'], time() + (3600)); // 3600 = cookie life is 1 hour
             return Redirect::to('/');
         }
     }
 
     public function delete()
     {
-        $id = Input::all();
-        DB::table('members')->where('id', '=', $id)->delete();
+        // get the id of the member
+        $id = Input::get('id');
+
+        //find if id exist
+        $member = Member::find($id);
+
+        // Delete the member
+        if($member != null)
+        {
+            $member->delete();
+        }
         return Redirect::to('/');
     }
 
     public function update()
     {
         $id = Input::all();
-        $update = true;
-        // Retrive selected Member info and send to the Form
-        $member = DB::table('members')->where('id', $id)->get();
 
-        // For mprocessing update form, Putting $update is sessions and will be removed after final without errors update
-        Session::put('update', $update);
-        return view('member')
-            ->with('member', $member[0])
-            ->with('update', $update);
+        // this variable will be use as check for putting update or create link on same user creation form ( one form with multiple operations)
+        $update = true;
+
+        // Retrive selected Member info and send to the Form
+        $member = Member::find($id);
+
+        if($member != null)
+        {
+            // For processing update form, Putting $update is sessions and will be removed after final without errors update
+            Session::put('update', $update);
+            return view('member')
+                ->with('member', $member[0])
+                ->with('update', $update);
+        }
+        else
+        {
+            return Redirect::to('/');
+        }
     }
 
     public function updatemember()
@@ -80,12 +108,20 @@ class MembersController extends Controller
         else
         {
             // update our member data
-            DB::table('members')
-                ->where('id', $inputs['id'])
-                ->update(['name' => $inputs['name'], 'email' => $inputs['email'], 'phone' => $inputs['phone'], 'dob' => $inputs['dob']]);
+            $member = Member::find($inputs['id']);
 
-            // Update done so just forget update and Redirect to main page
+            $member->name = $inputs['name'];
+            $member->email = $inputs['email'];
+            $member->phone = $inputs['phone'];
+            $member->dob = $inputs['dob'];
+            $member->save();
+
+            // Update done so just forget from sessions update and Redirect to main page
             Session::forget('update');
+
+            // We setup a cookie of recent change to show graphically user to a recent change in any field on home table
+            // And will delete this cookie on home page using javascript
+            setcookie("updatedUser", $inputs['email'], time() + (3600)); // 3600 = cookie life is 1 hour
             return Redirect::to('/');
         }
     }

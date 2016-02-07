@@ -2,7 +2,7 @@
 use Session;
 use App\Models\Member;
 
-class HomeController extends Controller {
+class AdminController extends Controller {
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ class HomeController extends Controller {
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
