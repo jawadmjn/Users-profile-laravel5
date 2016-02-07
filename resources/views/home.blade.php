@@ -11,7 +11,7 @@
                     @include('forms.modalform')
                     @include('forms.pagination')
                     <div class="text-center form-group">
-                        <label class="control-label"><b>Search Member</b></label>
+                        <label class="control-label"><b><u>Search Member</u></b></label>
                         <input type="text" name="findMember" id="findMember" value="">
                     </div>
                     <table class="table table-hover table-bordered" id="membersTable">
