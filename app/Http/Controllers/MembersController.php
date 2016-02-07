@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers;
 use Input;
 use Redirect;
-use App\Membersvalidator;
-use App\Member;
+use App\Models\Membersvalidator;
+use App\Models\Member;
 use Session;
 
 class MembersController extends Controller

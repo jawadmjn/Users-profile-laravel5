@@ -20,10 +20,10 @@
                 class="form-control"
                 name="name"
                 value="{{ isset($member->name) ? $member->name : old('name') }}"
-                data-validation="required length"
+                data-validation="required custom length"
                 data-validation-regexp="^([A-z]+)$"
                 data-validation-length="max30"
-                data-validation-error-msg="Enter User Name (Only Alphabets and Not more than 30 characters)"
+                data-validation-error-msg="Enter User Name (Only Alphabets(without Spaces) and Not more than 30 characters)"
                 >
         </div>
     </div>
@@ -53,7 +53,7 @@
             value="{{ isset($member->phone) ? $member->phone : old('phone') }}"
             data-validation="required number length"
             data-validation-length="max20"
-            data-validation-error-msg="Enter Valid Phone Number Not more than 20 characters"
+            data-validation-error-msg="Enter Valid Phone Number Not more than 20 characters and Only Numbers"
             >
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 use Session;
-use App\Member;
+use App\Models\Member;
 
 class AdminController extends Controller {
 
