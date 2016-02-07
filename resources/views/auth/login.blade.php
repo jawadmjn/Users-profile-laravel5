@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Creating or Editing users You must Login as Admin</div>
+				<div class="panel-heading"><h5>For Creating or Editing users You must Login as Admin</h5></div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
