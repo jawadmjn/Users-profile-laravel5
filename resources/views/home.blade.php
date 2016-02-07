@@ -10,6 +10,10 @@
                     @if (! $totalRecords == 0)
                     @include('forms.modalform')
                     @include('forms.pagination')
+                    <div class="text-center form-group">
+                        <label class="control-label"><b>Search Member</b></label>
+                        <input type="text" name="findMember" id="findMember" value="">
+                    </div>
                     <table class="table table-hover table-bordered" id="membersTable">
                       <thead>
                         <tr>
@@ -90,13 +94,11 @@ function searchTable(inputVal)
     var allCells = $(row).find('td');
     if(allCells.length > 0)
     {
-      var found = false;
       allCells.each(function(index, td)
       {
         var regExp = new RegExp(inputVal, 'i');
         if(regExp.test($(td).text()))
         {
-          found = true;
           // Add class info to show recent change
           $(td).parents('tr').addClass('info');
           setTimeout(function(){
@@ -117,35 +119,40 @@ window.onload = function () {
   if(updatedUser != '0')searchTable(updatedUser);
 }
 
+function findMember(inputVal)
+{
+  var table = $('#membersTable');
+  table.find('tr').each(function(index, row)
+  {
+    var allCells = $(row).find('td');
+    if(allCells.length > 0)
+    {
+      var found = false;
+      allCells.each(function(index, td)
+      {
+        var regExp = new RegExp(inputVal, 'i');
+        if(regExp.test($(td).text()))
+        {
+          found = true;
+          return false;
+        }
+      });
+      if(found == true)
+      {
+        $(row).show();
+      }
+      else $(row).hide();
+    }
+  });
+}
 
-
-// function searchTable(inputVal)
-// {
-//   var table = $('#membersTable');
-//   table.find('tr').each(function(index, row)
-//   {
-//     var allCells = $(row).find('td');
-//     if(allCells.length > 0)
-//     {
-//       var found = false;
-//       allCells.each(function(index, td)
-//       {
-//         var regExp = new RegExp(inputVal, 'i');
-//         if(regExp.test($(td).text()))
-//         {
-//           $(this).parents("tr").addClass("info");
-//           found = true;
-//           return false;
-//         }
-//       });
-//       if(found == true)
-//       {
-//         $(row).show();
-//       }
-//       else $(row).hide();
-//     }
-//   });
-// }
+$(document).ready(function()
+{
+  $('#findMember').keyup(function()
+  {
+    findMember($(this).val());
+  });
+});
 
 </script>
 
