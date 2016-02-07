@@ -42,6 +42,10 @@ class MembersController extends Controller
                 'phone'     => Input::get('phone'),
                 'dob'       => Input::get('dob'),
             ]);
+
+            // We setup a cookie of recent change to show graphically user to a recent change in any field on home table
+            // And will delete this cookie on home page using javascript
+            setcookie("updatedUser", $inputs['email'], time() + (3600)); // 3600 = cookie life is 1 hour
             return Redirect::to('/');
         }
     }
@@ -55,7 +59,10 @@ class MembersController extends Controller
         $member = Member::find($id);
 
         // Delete the member
-        $member->delete();
+        if($member != null)
+        {
+            $member->delete();
+        }
         return Redirect::to('/');
     }
 
@@ -69,11 +76,18 @@ class MembersController extends Controller
         // Retrive selected Member info and send to the Form
         $member = Member::find($id);
 
-        // For processing update form, Putting $update is sessions and will be removed after final without errors update
-        Session::put('update', $update);
-        return view('member')
-            ->with('member', $member[0])
-            ->with('update', $update);
+        if($member != null)
+        {
+            // For processing update form, Putting $update is sessions and will be removed after final without errors update
+            Session::put('update', $update);
+            return view('member')
+                ->with('member', $member[0])
+                ->with('update', $update);
+        }
+        else
+        {
+            return Redirect::to('/');
+        }
     }
 
     public function updatemember()
@@ -104,6 +118,10 @@ class MembersController extends Controller
 
             // Update done so just forget from sessions update and Redirect to main page
             Session::forget('update');
+
+            // We setup a cookie of recent change to show graphically user to a recent change in any field on home table
+            // And will delete this cookie on home page using javascript
+            setcookie("updatedUser", $inputs['email'], time() + (3600)); // 3600 = cookie life is 1 hour
             return Redirect::to('/');
         }
     }
