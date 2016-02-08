@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading"><a href="{{ url('member') }}" class="btn btn-link">Create New User</a></div>
+                <div class="panel-heading"><a href="{{ url('member') }}" class="btn btn-link">Create New Member</a></div>
                 <div class="panel-body">
                     @if (! $totalRecords == 0)
                     @include('forms.modalform')
