@@ -1,7 +1,3 @@
-## Laravel PHP Framework
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
 ## A Sample web-site which allows a user to create, read, update and delete user profiles.
 
 **Those user profiles should consist of the following fields:**
@@ -19,3 +15,16 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 7. It is necessary to authenticate before you reach the above described functionality(you have a button on top right for creating Admin)
 8. The birth date chosen with jQuery Date Picker or You can enter it Manually.
 9. Before user profile values are sent updated or created - they are checked. (e.g: “test-test” is not a valid email adress and “jerry123” is not a valid first name).
+
+
+## Usefull links:
+
+[Laravel 5.0 Documentation](https://laravel.com/docs/5.0/installation)
+
+[Eloquent ORM](https://laravel.com/docs/5.0/eloquent)
+
+[Validation Rules](https://laravel.com/docs/5.0/validation)
+
+[Form Validation JavaScript](http://www.formvalidator.net/)
+
+[Jquery Datepicker](https://jqueryui.com/datepicker/)
