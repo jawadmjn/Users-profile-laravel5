@@ -110,12 +110,14 @@ class MembersController extends Controller
             // update our member data
             $member = Member::find($inputs['id']);
 
-            $member->name = $inputs['name'];
-            $member->email = $inputs['email'];
-            $member->phone = $inputs['phone'];
-            $member->dob = $inputs['dob'];
-            $member->save();
-
+            if($member != null)
+            {
+                $member->name = $inputs['name'];
+                $member->email = $inputs['email'];
+                $member->phone = $inputs['phone'];
+                $member->dob = $inputs['dob'];
+                $member->save();
+            }
             // Update done so just forget from sessions update and Redirect to main page
             Session::forget('update');
 
