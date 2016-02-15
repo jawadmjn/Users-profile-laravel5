@@ -6,6 +6,7 @@
 * Phone Number
 * Birth Date
 
+**Workflow:**
 1. The Front end first list the user profiles in a table and offer a button for creating a new user profile.
 2. From the table you can delete or choose a user profile
 3. If you choose a user profile from the table or click the “create” button then you are led to a form where you can update or create the profile
