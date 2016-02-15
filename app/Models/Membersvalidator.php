@@ -11,7 +11,7 @@ class Membersvalidator
     {
         // validate the info, create rules for the inputs
         $rules = array(
-            'name' => 'required|max:30', // name can not to be greater than 30 characters
+            'name' => 'required|alpha|max:30', // name can not to be greater than 30 characters and only Alphabetical (Read Laravel Validation documentation for more rules)
             'email'    => 'required|email|max:50|unique:members,email,'.$id, // make sure the email is an actual email Note: this extra $id is the trick to avoid conflicts regarding updates
             'phone' => 'required|max:30', // phone can not to be greater than 30 characters
             'dob' => 'required|date',
