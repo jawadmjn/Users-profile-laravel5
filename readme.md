@@ -17,6 +17,24 @@
 9. Before user profile values are sent updated or created - they are checked. (e.g: “test-test” is not a valid email adress and “jerry123” is not a valid first name).
 
 
+## Installation:
+
+DB is injected as migrations, after setting up the project:
+edit DB connection lines in .env file in the project folder:
+
+
+```bash
+DB_HOST=localhost
+DB_DATABASE=your DB name
+DB_USERNAME=root
+DB_PASSWORD=your DB password
+```
+
+And then just run:
+```bash
+php artisan migrate
+```
+
 ## Usefull links:
 [Laravel 5.0 Documentation](https://laravel.com/docs/5.0/installation)
 
