@@ -1,6 +1,6 @@
 ## A Sample web-site which allows a user to create, read, update and delete user profiles.
 
-**Those user profiles should consist of the following fields:**
+**Those user profiles consist of the following fields:**
 * UserName
 * E-mail-address (every user have unique email)
 * Phone Number
