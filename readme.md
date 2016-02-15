@@ -1,10 +1,10 @@
 ## A Sample web-site which allows a user to create, read, update and delete user profiles.
 
 **Those user profiles should consist of the following fields:**
-* username
-* e-mail-address (every user have unique email)
-* phone number
-* birth date
+* UserName
+* E-mail-address (every user have unique email)
+* Phone Number
+* Birth Date
 
 1. The Front end first list the user profiles in a table and offer a button for creating a new user profile.
 2. From the table you can delete or choose a user profile
