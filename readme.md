@@ -18,7 +18,6 @@
 
 
 ## Usefull links:
-
 [Laravel 5.0 Documentation](https://laravel.com/docs/5.0/installation)
 
 [Eloquent ORM](https://laravel.com/docs/5.0/eloquent)
@@ -28,3 +27,8 @@
 [Form Validation JavaScript](http://www.formvalidator.net/)
 
 [Jquery Datepicker](https://jqueryui.com/datepicker/)
+
+## Developer:
+[Linkedin](https://www.linkedin.com/in/jnawaz)
+
+[Xing](https://www.xing.com/profile/Jawad_Nawaz3)
